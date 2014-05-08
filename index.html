@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Philippine Red Cross Chapters</title>
+    <title>Philippine Red Cross - GIS</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
@@ -18,42 +18,73 @@
     <![endif]-->
     <style>
 
-    #map { 
-      height: 300px; 
-      
-    }
+    html, body, #map{
+        height: 100%;
+        width: 100%;        
+        margin:0px;  
+      }
+     body {
+        padding-top: -15px;
+      }
+
+       .navbar {
+        height: 20px;
+      }
+
     .pageTitle{
-      margin-left:90px;
-      color:black !important;
+      position: absolute;
+      left: 8px;
+      margin-left:30px;
+      color:black !important; 
     }
 
-    #logo {
-      position:absolute;
-      left:3px;
-      top:5px;
-
-    }
-
-    #mapContainer {
-      margin-top: 80px;
+     #logo {
+      position: absolute;
+      height: 48px;
+      width: : 48px;
+      left: 3px;
      }
 
      .titleBar {
       background-color:#f41c1c;
+      max-height:30px;
     }
+
+ .btn-zoom {
+        position: absolute;
+        left: 40px;
+        top: 90px;
+        z-index: 999;
+        background-color: #ffffff;
+        border-color: #d7d7d8;
+        font-weight: bold;
+        color: #6d6e70;
+        box-shadow: 1px 1px 9px #c3c3c5;
+        outline: none;
+        padding: 5px 10px;
+        font-size: 12px;
+        line-height: 1.5;
+        border-radius: 3px;   
+        vertical-align: middle;
+        cursor: pointer;
+        border: 1px solid transparent;
+      }
+
     </style>
 
   </head>
   <body>
-    <div class="navbar navbar-inverse titleBar"> 
+    <div class="navbar navbar-inverse titleBar navbar-static-top">
       <div class="navbar-inner">
-          <a class="navbar-brand pageTitle" href="http://www.redcross.org.ph/">Philippine Red Cross </a>
+          <a class="navbar-brand pageTitle" href="http://www.redcross.org.ph/">Philippine Red Cross - GIS </a>
+              <img id="logo" src="images/PRC_logo.png" title="PRC Logo" class="img-responsive">
       </div>
      </div> 
-    <img id="logo" src="images/PRC_logo.png" title="PRC Logo" width="80" height="80">
-  <div id="mapContainer" class="container-fluid">
+
     <div id="map"></div>
   </div>
+
+<button class="btn-zoom" type="button" onClick="zoomOut();">Zoom to Extent</button>
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

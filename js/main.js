@@ -1,5 +1,7 @@
 var chapterData = [];
-var chapterMap = L.map('map').setView([14, 122], 5);
+var mapHeight = $(window).height() -30;
+$("#map").height(mapHeight);
+var chapterMap = L.map('map').setView([11, 121], 4);
 var chapterLayer = L.featureGroup().addTo(chapterMap);  
 
 var chapterIcon = L.icon({
@@ -38,6 +40,11 @@ L.tileLayer(tileLayerUrl, {
           });
         }
 
+        function zoomOut(){
+          var markersBounds = chapterLayer.getBounds();
+          chapterMap.fitBounds(markersBounds);   
+        }
+
         function mapChapterdata(){
           var chapterMarkers = L.geoJson(chapterData, {
             pointToLayer: function (feature, latlng) {
@@ -49,8 +56,7 @@ L.tileLayer(tileLayerUrl, {
           chapterLayer.addLayer(chapterMarkers);
 
           var markersBounds = chapterLayer.getBounds();
-          chapterMap.fitBounds(markersBounds);
-          
+          chapterMap.fitBounds(markersBounds);  
         };
 
         function onEachChapter(feature, layer){
