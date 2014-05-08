@@ -1,18 +1,23 @@
-      var chapterData = [];
-      var chapterMap = L.map('map').setView([14, 122], 5);
-      var chapterLayer = L.featureGroup().addTo(chapterMap);  
-      var chapterIcon = L.icon({
-        iconUrl: 'images/redcross.png',
-        iconSize:     [20, 20], // size of the icon
-        iconAnchor:   [10, 10], // point of the icon which will correspond to marker's location
-        popupAnchor:  [0, -14] // point from which the popup should open relative to the iconAnchor
-      });
-        L.tileLayer('https://{s}.tiles.mapbox.com/v3/examples.map-9ijuk24y/{z}/{x}/{y}.png', {
-      maxZoom: 18,
-      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-        '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-        'Imagery © <a href="http://mapbox.com">Mapbox</a>'
-    }).addTo(chapterMap);
+var chapterData = [];
+var chapterMap = L.map('map').setView([14, 122], 5);
+var chapterLayer = L.featureGroup().addTo(chapterMap);  
+
+var chapterIcon = L.icon({
+  iconUrl: 'images/redcross.png',
+  iconSize:     [20, 20], // size of the icon
+  iconAnchor:   [10, 10], // point of the icon which will correspond to marker's location
+  popupAnchor:  [0, -14] // point from which the popup should open relative to the iconAnchor
+});
+      
+var tileLayerUrl = 'http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png';
+var attribution = 'Map data &copy; <a href="http://openstreetmap.org" target="_blank">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/" target="_blank">CC-BY-SA</a> | Map style by <a href="http://hot.openstreetmap.org" target="_blank">H.O.T.</a> | &copy; <a href="http://redcross.org" title="Red Cross" target="_blank">Red Cross</a> 2013 | <a title="Disclaimer" onClick="showDisclaimer();">Disclaimer</a>';
+
+L.tileLayer(tileLayerUrl, {
+  maxZoom: 18,
+  attribution: attribution,
+}).addTo(chapterMap);
+
+
 
         function getChapterData() {
           $.ajax({
