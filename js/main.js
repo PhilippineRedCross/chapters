@@ -1,8 +1,11 @@
 var chapterData = [];
-var mapHeight = $(window).height() -30;
+var mapHeight = $(window).height() -90;
 $("#map").height(mapHeight);
-var chapterMap = L.map('map').setView([11, 121], 4);
+var chapterMap = L.map('map',{zoomControl:false}).setView([11, 121], 4);
 var chapterLayer = L.featureGroup().addTo(chapterMap);  
+
+L.control.zoom({position: 'topright'} ).addTo(chapterMap);
+
 
 var chapterIcon = L.icon({
   iconUrl: 'images/redcross.png',
@@ -12,7 +15,7 @@ var chapterIcon = L.icon({
 });
       
 var tileLayerUrl = 'http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png';
-var attribution = 'Map data &copy; <a href="http://openstreetmap.org" target="_blank">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/" target="_blank">CC-BY-SA</a> | Map style by <a href="http://hot.openstreetmap.org" target="_blank">H.O.T.</a> | &copy; <a href="http://redcross.org" title="Red Cross" target="_blank">Red Cross</a> 2013 | <a title="Disclaimer" onClick="showDisclaimer();">Disclaimer</a>';
+var attribution = 'Map data &copy; <a href="http://openstreetmap.org" target="_blank">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/" target="_blank">CC-BY-SA</a> | Map style by <a href="http://hot.openstreetmap.org" target="_blank">H.O.T.</a> | &copy; <a href="http://www.redcross.org.ph/" title="Philippine Red Cross" target="_blank">Philippine Red Cross</a> 2014 | <a title="Disclaimer" onClick="showDisclaimer();">Disclaimer</a>';
 
 L.tileLayer(tileLayerUrl, {
   maxZoom: 18,
@@ -66,14 +69,12 @@ L.tileLayer(tileLayerUrl, {
 
         getChapterData();
 
- .navbar-PRC {
-  background-color:red;
-  border-bottom: 2px solid black;
-  height: 50px;
+// show disclaimer text on click of dislcaimer link
+function showDisclaimer() {
+    window.alert("The maps on this page do not imply the expression of any opinion on the part of the Philippine Red Cross concerning the legal status of a territory or of its authorities.");
 }
-.logo {
-   position: absolute;
-  top: 12px;
-  left: 12px;
-  height: 70px;
-}
+// adjust map div height on screen resize
+$(window).resize(function(){
+ mapHeight=$(window).height() -90;
+$("#map").height(mapHeight);
+});

@@ -9,7 +9,7 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
      <link rel="stylesheet" href="css/leaflet.css" />
-     <link href="js/main.js" rel="stylesheet" />
+     <link href="css/customs.css" rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -20,19 +20,35 @@
 
 
   </head>
-  <body>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top navbar-PRC">
       <div class="navbar-inner">
         <img class="logo" src="Images/PRC_logo.png" />
         <div>
-          <a class="navbar-brand" href="#"><span class="navbar-brand-PRC">Philippine Red Cross - GIS</span></a>
+          <a class="navbar-brand" href="http://philippineredcross.github.io/"><span class="navbar-brand-PRC">Philippine Red Cross - GIS</span></a>
         </div>
       </div>
     </div>   
 
-<button class="btn-zoom" type="button" onClick="zoomOut();">Zoom to Extent</button>
+<button class="btn-zoom btn btn-sm" type="button" onClick="zoomOut();">Zoom to Extent</button>
 
+<div class="container-fluid container-map">
+    <div id="map"> </div>
+</div>
+
+ <div id="footer">
+        <div class="container container-motto">
+          <div class="col-xs-4 col-motto">
+            <span class="motto-white">ALWAYS </span><span class="motto-red">FIRST</span>
+          </div>
+          <div class="col-xs-4 col-motto">
+            <span class="motto-white">ALWAYS </span><span class="motto-red">READY</span>
+          </div>
+          <div class="col-xs-4 col-motto">
+            <span class="motto-white">ALWAYS </span><span class="motto-red">THERE</span>
+          </div>
+        </div>
+    </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
