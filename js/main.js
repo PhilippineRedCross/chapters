@@ -21,6 +21,7 @@ L.tileLayer(tileLayerUrl, {
 
 
 
+
         function getChapterData() {
           $.ajax({
             type: 'GET',
@@ -64,3 +65,15 @@ L.tileLayer(tileLayerUrl, {
         }
 
         getChapterData();
+
+ .navbar-PRC {
+  background-color:red;
+  border-bottom: 2px solid black;
+  height: 50px;
+}
+.logo {
+   position: absolute;
+  top: 12px;
+  left: 12px;
+  height: 70px;
+}
