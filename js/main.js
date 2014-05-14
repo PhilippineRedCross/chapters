@@ -22,59 +22,55 @@ L.tileLayer(tileLayerUrl, {
   attribution: attribution,
 }).addTo(chapterMap);
 
+function getChapterData() {
+  $.ajax({
+    type: 'GET',
+    url: 'data/PRC_Chapters/PRC_chapters.json',
+    contentType: 'application/json',
+    dataType: 'json',
+    timeout: 10000,
+    success: function(data) {
+      console.log("Success!");
+      chapterData = data;
+      mapChapterdata();
 
+    },
+    error: function(e) {
+      console.log(e);
+    }
+  });
+}
 
+function zoomOut(){
+  var markersBounds = chapterLayer.getBounds();
+  chapterMap.fitBounds(markersBounds);   
+}
 
-        function getChapterData() {
-          $.ajax({
-            type: 'GET',
-            url: 'data/PRC_Chapters/PRC_chapters.json',
-            contentType: 'application/json',
-            dataType: 'json',
-            timeout: 10000,
-            success: function(data) {
-              console.log("Success!");
-              chapterData = data;
-              mapChapterdata();
+function mapChapterdata(){
+  var chapterMarkers = L.geoJson(chapterData, {
+    pointToLayer: function (feature, latlng) {
+      return L.marker(latlng,{icon: chapterIcon});
+    },  
+    onEachFeature: onEachChapter         
+  });
+  chapterLayer.addLayer(chapterMarkers);
+  var markersBounds = chapterLayer.getBounds();
+  chapterMap.fitBounds(markersBounds);  
+};
 
-            },
-            error: function(e) {
-              console.log(e);
-            }
-          });
-        }
+function onEachChapter(feature, layer){
+  layer.bindPopup(feature.properties.Chapter);
+}
 
-        function zoomOut(){
-          var markersBounds = chapterLayer.getBounds();
-          chapterMap.fitBounds(markersBounds);   
-        }
+getChapterData();
 
-        function mapChapterdata(){
-          var chapterMarkers = L.geoJson(chapterData, {
-            pointToLayer: function (feature, latlng) {
-              return L.marker(latlng,{icon: chapterIcon});
-            },  
-            onEachFeature: onEachChapter         
-          });
-
-          chapterLayer.addLayer(chapterMarkers);
-
-          var markersBounds = chapterLayer.getBounds();
-          chapterMap.fitBounds(markersBounds);  
-        };
-
-        function onEachChapter(feature, layer){
-          layer.bindPopup(feature.properties.Chapter);
-        }
-
-        getChapterData();
-
-// show disclaimer text on click of dislcaimer link
+// show disclaimer text on click of disclaimer link
 function showDisclaimer() {
     window.alert("The maps on this page do not imply the expression of any opinion on the part of the Philippine Red Cross concerning the legal status of a territory or of its authorities.");
 }
+
 // adjust map div height on screen resize
 $(window).resize(function(){
- mapHeight=$(window).height() -90;
-$("#map").height(mapHeight);
+  mapHeight=$(window).height() -90;
+  $("#map").height(mapHeight);
 });
