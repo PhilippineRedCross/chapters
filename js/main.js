@@ -25,7 +25,7 @@ L.tileLayer(tileLayerUrl, {
 function getChapterData() {
   $.ajax({
     type: 'GET',
-    url: 'data/PRC_Chapters/PRC_chapters.json',
+    url: 'data/PRC_chapters_2014-05-14.geojson',
     contentType: 'application/json',
     dataType: 'json',
     timeout: 10000,
@@ -59,8 +59,24 @@ function mapChapterdata(){
 };
 
 function onEachChapter(feature, layer){
-  layer.bindPopup(feature.properties.Chapter);
+  layer.bindPopup(feature.properties.NAME);
+  layer.on('click', function(e) {
+    chapterClick(e);
+  });
 }
+
+function chapterClick(e){
+  var chapterName = e.target.feature.properties.NAME;
+  chapterName = toTitleCase(chapterName);
+  var chapterAdmin = e.target.feature.properties.ADMINISTRA;
+  $("#info-chapterName").html(chapterName);
+  $("#info-chapterAdmin").html(chapterAdmin);
+}
+
+function toTitleCase(str){
+  return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+}
+
 
 getChapterData();
 
