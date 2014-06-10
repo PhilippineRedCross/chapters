@@ -21,10 +21,14 @@ body{
   /*z-index: 99999;*/
 }
 
+#infoSidebar{
+  overflow:auto;
+}
+
 .btn-zoom{
   position: absolute;
   top: 10px;
-  left: -160px;
+  right: 45px;
   z-index: 9999;
   background-color: #ffffff;
   border-color: #AFAFB6;
