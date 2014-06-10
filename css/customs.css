@@ -21,20 +21,22 @@ body{
   /*z-index: 99999;*/
 }
 
+#infoSidebar{
+  overflow:auto;
+}
+
 .btn-zoom{
-  position:absolute;
-  top:60px;
-  right:46px;
-  z-index:9999;
+  position: absolute;
+  top: 10px;
+  right: 45px;
+  z-index: 9999;
   background-color: #ffffff;
-  border-color: #d7d7d8;
+  border-color: #AFAFB6;
   font-weight: bold;
   color: #6d6e70;
   box-shadow: 1px 1px 9px #c3c3c5;
 }
-.container-map{
-  padding:0;
-}
+
 .navbar-PRC {
   background-color: #f41c1c;
   border-bottom: 2px solid black;
